@@ -1,0 +1,4 @@
+SOCIALCLUB
+An Open Source SOCIALCLUB
+AUTHOR: AlSnake
+License: MIT

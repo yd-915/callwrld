@@ -1,0 +1,39 @@
+{
+    "name": "socialclub",
+    "version": "0.0.1",
+    "description": "An Open Source SocialClub",
+    "main": "src/app.js",
+    "scripts": {
+		"prod": "node build/app.js",
+		"start": "concurrently npm:start:*",
+        "start:build": "tsc -w",
+        "start:dev": "nodemon build/app.js",
+        "lint": "eslint ./src --fix --ext .ts",
+		"test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "socialclub"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AlSnake/socialclub.git"
+    },
+    "author": "Al Snake",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/AlSnake/socialclub/issues"
+    },
+    "homepage": "https://github.com/AlSnake/socialclub#readme",
+    "dependencies": {
+        "dotenv": "^11.0.0",
+        "winston": "^3.4.0"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.8",
+        "concurrently": "^7.0.0",
+        "eslint": "^8.6.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "nodemon": "^2.0.15",
+        "typescript": "^4.5.4"
+    }
+}
