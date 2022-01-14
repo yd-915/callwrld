@@ -4,12 +4,12 @@
     "description": "An Open Source SocialClub",
     "main": "src/app.js",
     "scripts": {
-		"prod": "node build/app.js",
-		"start": "concurrently npm:start:*",
+        "prod": "node build/app.js",
+        "start": "concurrently npm:start:*",
         "start:build": "tsc -w",
         "start:dev": "nodemon build/app.js",
         "lint": "eslint ./src --fix --ext .ts",
-		"test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [
         "socialclub"
@@ -25,10 +25,14 @@
     },
     "homepage": "https://github.com/AlSnake/socialclub#readme",
     "dependencies": {
+        "cookie-parser": "^1.4.6",
         "dotenv": "^11.0.0",
+        "express": "^4.17.2",
         "winston": "^3.4.0"
     },
     "devDependencies": {
+        "@types/cookie-parser": "^1.4.2",
+        "@types/express": "^4.17.13",
         "@types/node": "^17.0.8",
         "concurrently": "^7.0.0",
         "eslint": "^8.6.0",
