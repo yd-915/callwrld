@@ -5,12 +5,21 @@ import cookieParser from 'cookie-parser';
 import { ExtendedError } from './interfaces';
 import { Database } from './helpers/Database';
 import { MONGODB_URI } from './config/mongodb';
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+// SWAGGER
+app.use(
+	'/docs',
+	swaggerUi.serve,
+	swaggerUi.setup(YAML.load('./src/config/swagger.yaml'))
+);
 
 // INTERNAL ERROR HANDLER
 app.use(
