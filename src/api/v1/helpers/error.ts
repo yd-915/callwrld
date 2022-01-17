@@ -1,4 +1,4 @@
-import { ExtendedError } from '../interfaces';
+import { ExtendedError } from '../interfaces/ExtendedError';
 
 export function ThrowExtendedError(
 	message?: string | undefined,

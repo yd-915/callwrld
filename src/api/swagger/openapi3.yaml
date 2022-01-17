@@ -1,11 +1,11 @@
 openapi: 3.0.0
 info:
-  version: "1.0.0"
+  version: "1.1.0"
   title: Whisper
   description: WHISPER OPENAPI DOCS
 
 servers:
-  - url: http://{host}:{port}/{basePath}
+  - url: http://{host}:{port}/api/{basePath}
     description: API SERVER
     variables:
       host:
@@ -20,10 +20,10 @@ tags:
 
 paths:
   /users:
-    $ref: "./components/paths/users.yaml"
+    $ref: "./components/resources/user/users.yaml"
 
-  /users/{id}:
-    $ref: "./components/paths/user.yaml"
+  /users/{userId}:
+    $ref: "./components/resources/user/user.yaml"
 
   /swagger:
     x-swagger-pipe: swagger_raw

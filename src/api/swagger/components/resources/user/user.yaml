@@ -1,7 +1,6 @@
 x-swagger-router-controller: user
 parameters:
-  - description: ID of User
-    $ref: "../parameters/path/userId.yaml"
+  $ref: "../../parameters/path/userId.yaml"
 
 get:
   tags:
@@ -10,15 +9,15 @@ get:
   operationId: getUser
   responses:
     200:
-      $ref: "../responses/200OK.yaml"
+      $ref: "../../responses/200OK.yaml"
       content:
         application/json:
           schema:
             $ref: "../schemas/User.yaml"
     404:
-      $ref: "../responses/404NotFound.yaml"
+      $ref: "../../responses/404NotFound.yaml"
     500:
-      $ref: "../responses/500InternalServerError.yaml"
+      $ref: "../../responses/500InternalServerError.yaml"
 
 put:
   tags:
@@ -31,18 +30,18 @@ put:
     content:
       application/json:
         schema:
-          $ref: "../schemas/User.yaml"
+          $ref: "../../schemas/UserNoId.yaml"
   responses:
     200:
-      $ref: "../responses/200OK.yaml"
+      $ref: "../../responses/200OK.yaml"
       content:
         application/json:
           schema:
             $ref: "../schemas/User.yaml"
     404:
-      $ref: "../responses/404NotFound.yaml"
+      $ref: "../../responses/404NotFound.yaml"
     500:
-      $ref: "../responses/500InternalServerError.yaml"
+      $ref: "../../responses/500InternalServerError.yaml"
 
 delete:
   tags:
@@ -51,8 +50,8 @@ delete:
   operationId: deleteUser
   responses:
     204:
-      $ref: "../responses/204NoContent.yaml"
+      $ref: "../../responses/204NoContent.yaml"
     404:
-      $ref: "../responses/404NotFound.yaml"
+      $ref: "../../responses/404NotFound.yaml"
     500:
-      $ref: "../responses/500InternalServerError.yaml"
+      $ref: "../../responses/500InternalServerError.yaml"

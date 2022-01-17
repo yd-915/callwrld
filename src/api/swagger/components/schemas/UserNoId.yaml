@@ -1,6 +1,4 @@
 properties:
-  id:
-    type: string
   email:
     type: string
   username:

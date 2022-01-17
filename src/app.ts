@@ -1,12 +1,13 @@
 import 'dotenv/config';
 import { Logger } from './core/logger';
 import express, { Request, Response, NextFunction } from 'express';
+import 'express-async-errors';
 import cookieParser from 'cookie-parser';
-import { ExtendedError } from './interfaces';
 import { Database } from './helpers/Database';
 import { MONGODB_URI } from './config/mongodb';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
+import RouterV1 from './api/v1/routes/Router';
 
 const app = express();
 
@@ -21,22 +22,22 @@ app.use(
 	swaggerUi.setup(YAML.load('./src/api/swagger/swagger.yaml'))
 );
 
+// Router
+app.use('/api', RouterV1.getRouter());
+
 // INTERNAL ERROR HANDLER
-app.use(
-	(err: ExtendedError, req: Request, res: Response, next: NextFunction) => {
-		const status = err.status || 500;
-		const error = { message: err.message };
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+	const status = err.status || 500;
+	const error = { message: err.message, errors: err.errors };
 
-		if (app.get('env') === 'development')
-			Object.assign(error, {
-				errors: err.errors,
-				stack: err.stack,
-				debug: err,
-			});
+	if (app.get('env') === 'development')
+		Object.assign(error, {
+			stack: err.stack,
+			debug: err,
+		});
 
-		return res.status(status).json(error);
-	}
-);
+	return res.status(status).json(error);
+});
 
 Database.connectMongodb(MONGODB_URI, (err) => {
 	if (err) {
