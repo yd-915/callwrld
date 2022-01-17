@@ -9,6 +9,7 @@
         "start:build": "tsc -w",
         "start:dev": "nodemon build/app.js",
         "lint": "eslint ./src --fix --ext .ts",
+		"swagger": "swagger-cli bundle -r src/api/swagger/openapi3.yaml --o src/api/swagger/swagger.yaml --t yaml",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [

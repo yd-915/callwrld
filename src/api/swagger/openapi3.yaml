@@ -1,0 +1,39 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: Whisper
+  description: WHISPER OPENAPI DOCS
+
+servers:
+  - url: http://{host}:{port}/{basePath}
+    description: API SERVER
+    variables:
+      host:
+        default: "localhost"
+      port:
+        default: "3000"
+      basePath:
+        default: v1
+
+tags:
+  - name: "Users"
+
+paths:
+  /users:
+    $ref: "./components/paths/users.yaml"
+
+  /users/{id}:
+    $ref: "./components/paths/user.yaml"
+
+  /swagger:
+    x-swagger-pipe: swagger_raw
+
+components:
+  schemas:
+    $ref: "./components/schemas/index.yaml"
+
+  parameters:
+    $ref: "./components/parameters/index.yaml"
+
+  responses:
+    $ref: "./components/responses/index.yaml"

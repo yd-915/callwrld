@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(
 	'/docs',
 	swaggerUi.serve,
-	swaggerUi.setup(YAML.load('./src/config/swagger.yaml'))
+	swaggerUi.setup(YAML.load('./src/api/swagger/swagger.yaml'))
 );
 
 // INTERNAL ERROR HANDLER

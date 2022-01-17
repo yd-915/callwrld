@@ -1,0 +1,234 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Whisper
+  description: WHISPER OPENAPI DOCS
+servers:
+  - url: "http://{host}:{port}/{basePath}"
+    description: API SERVER
+    variables:
+      host:
+        default: localhost
+      port:
+        default: "3000"
+      basePath:
+        default: v1
+tags:
+  - name: Users
+paths:
+  /users:
+    x-swagger-router-controller: user
+    get:
+      tags:
+        - Users
+      description: Get all Users
+      operationId: getUsers
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: string
+                    email:
+                      type: string
+                    username:
+                      type: string
+                    password:
+                      type: string
+          description: OK
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    post:
+      tags:
+        - Users
+      description: Create new User
+      operationId: postUsers
+      requestBody:
+        description: User to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  type: string
+                email:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                  email:
+                    type: string
+                  username:
+                    type: string
+                  password:
+                    type: string
+          description: Created
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  "/users/{id}":
+    x-swagger-router-controller: user
+    parameters:
+      - description: ID of User
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - Users
+      description: Get User by ID
+      operationId: getUser
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                  email:
+                    type: string
+                  username:
+                    type: string
+                  password:
+                    type: string
+          description: OK
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      tags:
+        - Users
+      description: Update User by ID
+      operationId: putUser
+      requestBody:
+        description: User to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  type: string
+                email:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                  email:
+                    type: string
+                  username:
+                    type: string
+                  password:
+                    type: string
+          description: OK
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      tags:
+        - Users
+      description: Remove User by ID
+      operationId: deleteUser
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /swagger:
+    x-swagger-pipe: swagger_raw
+components:
+  schemas:
+    User:
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+  parameters:
+    userId:
+      in: path
+      name: userId
+      description: The ID of User to retrieve
+      required: true
+      schema:
+        type: string
+  responses:
+    404NotFound:
+      description: Not Found
+    500InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
